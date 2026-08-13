@@ -1,31 +1,47 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { site } from '../../data/site';
 
 interface Props {
   publication: CollectionEntry<'publications'>['data'];
 }
 
 const { publication } = Astro.props;
-const { title, authors, venue, year, link, pdf, code, abstract } = publication;
+const { title, authors, venue, year, link, pdf, code, website, abstract } = publication;
 ---
 
 <article class="publication">
   <h3>
     {link ? <a href={link} target="_blank" rel="noopener noreferrer">{title}</a> : title}
   </h3>
-  <p class="meta">{authors.join(', ')} — {venue}, {year}</p>
+  <p class="meta">
+    {
+      authors.map((author, i) => (
+        <>
+          {i > 0 && ', '}
+          {author === site.name ? <strong class="self">{author}</strong> : author}
+        </>
+      ))
+    }
+    {' '}— {venue}, {year}
+  </p>
   {abstract && <p class="abstract">{abstract}</p>}
   {
-    (pdf || code) && (
+    (pdf || code || website) && (
       <p class="links">
         {pdf && (
           <a href={pdf} target="_blank" rel="noopener noreferrer">
-            PDF
+            [Paper]
           </a>
         )}
         {code && (
           <a href={code} target="_blank" rel="noopener noreferrer">
-            Code
+            [Code]
+          </a>
+        )}
+        {website && (
+          <a href={website} target="_blank" rel="noopener noreferrer">
+            [Website]
           </a>
         )}
       </p>
@@ -54,6 +70,11 @@ const { title, authors, venue, year, link, pdf, code, abstract } = publication;
     margin-bottom: var(--space-1);
   }
 
+  .meta :global(.self) {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
   .abstract {
     font-size: var(--text-sm);
     margin-bottom: var(--space-1);
@@ -62,8 +83,16 @@ const { title, authors, venue, year, link, pdf, code, abstract } = publication;
   .links {
     display: flex;
     gap: var(--space-3);
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     font-weight: 600;
     margin-bottom: 0;
+  }
+
+  .links a {
+    color: var(--color-text-muted);
+  }
+
+  .links a:hover {
+    color: var(--color-accent);
   }
 </style>

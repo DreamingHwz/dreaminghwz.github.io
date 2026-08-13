@@ -20,7 +20,10 @@ function formatDate(date: Date) {
 <BaseLayout title={title} description={description}>
   <div class="page-shell">
     <article class="post content-width">
-      <a class="back-link" href="/blog/">← Back to blog</a>
+      <div class="back-links">
+        <a class="back-link" href="/">← Homepage</a>
+        <a class="back-link" href="/blog/">← Back to blog</a>
+      </div>
       <h1>{title}</h1>
       <p class="meta">
         {formatDate(pubDate)}
@@ -43,11 +46,16 @@ function formatDate(date: Date) {
 </BaseLayout>
 
 <style>
+  .back-links {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
   .back-link {
     display: inline-block;
     font-size: var(--text-sm);
     font-weight: 600;
-    margin-bottom: var(--space-4);
   }
 
   .meta {

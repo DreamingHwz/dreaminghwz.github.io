@@ -1,15 +1,19 @@
 ---
 import { site } from '../../data/site';
+import ContactInfo from './ContactInfo.astro';
 ---
 
 <section class="bio" aria-label="Introduction">
   <div class="portrait blob-frame">
-    <img src={site.profileImage} alt={`Portrait of ${site.name}`} width="128" height="128" />
+    <img src={site.profileImage} alt={`Portrait of ${site.name}`} width="140" height="140" />
   </div>
   <div class="intro">
-    <h1>{site.name}</h1>
-    <p class="role">{site.role}</p>
-    <p class="bio-text">{site.bio}</p>
+    <div class="name-row">
+      <h1>{site.name}</h1>
+      <ContactInfo />
+    </div>
+    <p class="role" set:html={site.role} />
+    <p class="bio-text" set:html={site.bio} />
   </div>
 </section>
 
@@ -23,8 +27,8 @@ import { site } from '../../data/site';
 
   .portrait {
     flex-shrink: 0;
-    width: 96px;
-    height: 96px;
+    width: 130px;
+    height: 130px;
     background: var(--color-bg-raised);
     border: 1px solid var(--color-border);
   }
@@ -33,6 +37,7 @@ import { site } from '../../data/site';
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 0%;
   }
 
   .intro {
@@ -40,8 +45,20 @@ import { site } from '../../data/site';
     flex: 1;
   }
 
+  .name-row {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .name-row :global(.contact-list) {
+    margin-bottom: 0.5em;
+  }
+
   h1 {
-    margin-bottom: var(--space-1);
+    margin-bottom: 0;
   }
 
   .role {

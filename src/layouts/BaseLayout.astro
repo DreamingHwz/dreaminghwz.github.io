@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-import SiteHeader from '../components/layout/SiteHeader.astro';
 
 interface Props {
   title?: string;
@@ -22,7 +21,6 @@ const pageTitle = title ? `${title} — ${site.name}` : site.name;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <SiteHeader />
     <slot />
   </body>
 </html>

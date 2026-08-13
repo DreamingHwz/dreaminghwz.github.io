@@ -1,31 +1,35 @@
 ---
 import Bio from '../sections/Bio.astro';
-import ContactInfo from '../sections/ContactInfo.astro';
 import PublicationsList from '../sections/PublicationsList.astro';
-import ProjectsGrid from '../sections/ProjectsGrid.astro';
-import ExperienceTimeline from '../sections/ExperienceTimeline.astro';
-import BlogList from '../sections/BlogList.astro';
 import Hobbies from '../sections/Hobbies.astro';
 ---
 
 <main class="main-column content-width">
   <div class="stack">
-    <div class="intro-block">
-      <Bio />
-      <ContactInfo />
+    <div class="hero">
+      <div class="intro-block">
+        <Bio />
+      </div>
     </div>
     <PublicationsList />
-    <ProjectsGrid />
-    <ExperienceTimeline />
-    <BlogList limit={3} />
     <Hobbies />
   </div>
 </main>
 
 <style>
+  .hero {
+    padding-top: 19vh;
+  }
+
   .intro-block {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+  }
+
+  @media (max-width: 1023.98px) {
+    .hero {
+      padding-top: 4vh;
+    }
   }
 </style>

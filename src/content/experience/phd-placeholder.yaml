@@ -1,9 +1,0 @@
-type: education
-org: "University Name"
-title: "Ph.D. in Your Field"
-location: "City, Country"
-startDate: 2023-09-01
-description: "Placeholder description of your research focus or advisor."
-highlights:
-  - "Placeholder highlight — an award, a milestone, or a focus area."
-order: 1

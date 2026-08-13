@@ -26,14 +26,15 @@
   --space-8: 4rem;
 
   /* type */
+  --font-serif: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.5rem;
   --leading-normal: 1.6;
   --leading-tight: 1.25;
 
@@ -44,7 +45,6 @@
 
   /* organic accent shape — asymmetric border-radius "blob" */
   --blob-shape: 63% 37% 54% 46% / 43% 37% 63% 57%;
-  --blob-shape-alt: 42% 58% 63% 37% / 51% 42% 58% 49%;
 
   /* layout */
   --content-width: 42rem;

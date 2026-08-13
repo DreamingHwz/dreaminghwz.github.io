@@ -1,12 +1,16 @@
-title: "An Example Paper Title Goes Here"
+title: "FlowLog: Re-thinking Datalog for Fast and Extensible Static Analysis"
 authors:
-  - "Your Name"
-  - "Coauthor Name"
-venue: "Example Conference on Interesting Problems (ECIP)"
-year: 2025
+  - "Zhenghong Yu"
+  - "Hangdong Zhao"
+  - "Wanzhu Hou"
+  - "Paraschos Koutris"
+venue: "SPLASH/ISSTA (Tool Demo)"
+year: 2026
 type: conference
-link: "https://example.com/paper-1"
+link: "https://arxiv.org/pdf/2607.23971"
+pdf: "https://arxiv.org/pdf/2607.23971"
+code: "https://github.com/flowlog-rs/flowlog"
+website: "https://www.flowlog-rs.com/"
 abstract: >
-  Placeholder abstract. Replace with the real abstract or a one-sentence
-  summary of what the paper contributes.
+  A Datalog compiler that turns Soufflé style programs into Differential Dataflow executables for efficient and extensible static analysis. 
 featured: true
