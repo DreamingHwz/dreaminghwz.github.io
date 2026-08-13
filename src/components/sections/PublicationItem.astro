@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  publication: CollectionEntry<'publications'>['data'];
+}
+
+const { publication } = Astro.props;
+const { title, authors, venue, year, link, pdf, code, abstract } = publication;
+---
+
+<article class="publication">
+  <h3>
+    {link ? <a href={link} target="_blank" rel="noopener noreferrer">{title}</a> : title}
+  </h3>
+  <p class="meta">{authors.join(', ')} — {venue}, {year}</p>
+  {abstract && <p class="abstract">{abstract}</p>}
+  {
+    (pdf || code) && (
+      <p class="links">
+        {pdf && (
+          <a href={pdf} target="_blank" rel="noopener noreferrer">
+            PDF
+          </a>
+        )}
+        {code && (
+          <a href={code} target="_blank" rel="noopener noreferrer">
+            Code
+          </a>
+        )}
+      </p>
+    )
+  }
+</article>
+
+<style>
+  .publication {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .publication:last-child {
+    border-bottom: none;
+  }
+
+  h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+  }
+
+  .abstract {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+</style>

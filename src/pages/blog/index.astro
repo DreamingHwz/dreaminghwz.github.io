@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostCard from '../../components/sections/BlogPostCard.astro';
+import EmptyState from '../../components/ui/EmptyState.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<BaseLayout title="Blog">
+  <div class="page-shell">
+    <div class="content-width">
+      <h1>Blog</h1>
+      {
+        posts.length === 0 ? (
+          <EmptyState message="No posts yet." />
+        ) : (
+          <div class="list">
+            {posts.map((post) => (
+              <BlogPostCard post={post} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

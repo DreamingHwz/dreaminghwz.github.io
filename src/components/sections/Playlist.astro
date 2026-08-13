@@ -1,0 +1,51 @@
+---
+import { hobbies } from '../../data/site';
+---
+
+<div class="playlist">
+  <p class="blurb">{hobbies.playlistBlurb}</p>
+  {
+    hobbies.playlistEmbedUrl ? (
+      <iframe
+        title="Playlist"
+        src={hobbies.playlistEmbedUrl}
+        width="100%"
+        height="352"
+        style="border-radius: 12px;"
+        frameborder="0"
+        allowfullscreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    ) : (
+      <div class="placeholder">
+        <p>Add a Spotify/Apple Music embed URL in <code>src/data/site.ts</code> to show a playlist here.</p>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .blurb {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .placeholder {
+    border: 1.5px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    background: var(--color-bg-raised);
+  }
+
+  .placeholder p {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .placeholder code {
+    font-size: var(--text-xs);
+  }
+</style>

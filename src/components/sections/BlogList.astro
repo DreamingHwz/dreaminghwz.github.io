@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from '../ui/SectionHeading.astro';
+import EmptyState from '../ui/EmptyState.astro';
+import BlogPostCard from './BlogPostCard.astro';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const visible = limit ? posts.slice(0, limit) : posts;
+---
+
+<section aria-labelledby="blog-heading">
+  <SectionHeading title="Blog" id="blog-heading" />
+  {
+    visible.length === 0 ? (
+      <EmptyState message="No posts yet." />
+    ) : (
+      <div class="list">
+        {visible.map((post) => (
+          <BlogPostCard post={post} />
+        ))}
+      </div>
+    )
+  }
+  {limit && posts.length > limit && <a class="see-all" href="/blog/">See all posts →</a>}
+</section>
+
+<style>
+  .see-all {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+</style>

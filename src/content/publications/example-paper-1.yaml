@@ -1,0 +1,12 @@
+title: "An Example Paper Title Goes Here"
+authors:
+  - "Your Name"
+  - "Coauthor Name"
+venue: "Example Conference on Interesting Problems (ECIP)"
+year: 2025
+type: conference
+link: "https://example.com/paper-1"
+abstract: >
+  Placeholder abstract. Replace with the real abstract or a one-sentence
+  summary of what the paper contributes.
+featured: true

@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<div class="section-heading">
+  <span class="blob-accent" aria-hidden="true"></span>
+  <h2 id={id}>{title}</h2>
+</div>
+
+<style>
+  .section-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: var(--space-4);
+  }
+
+  .blob-accent {
+    inset: -0.35em -0.6em;
+    width: auto;
+    height: auto;
+  }
+
+  h2 {
+    position: relative;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import SiteHeader from '../components/layout/SiteHeader.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = 'Personal academic site.' } = Astro.props;
+const pageTitle = title ? `${title} — ${site.name}` : site.name;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <SiteHeader />
+    <slot />
+  </body>
+</html>

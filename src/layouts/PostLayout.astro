@@ -1,0 +1,95 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Tag from '../components/ui/Tag.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags } = Astro.props;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="page-shell">
+    <article class="post content-width">
+      <a class="back-link" href="/blog/">← Back to blog</a>
+      <h1>{title}</h1>
+      <p class="meta">
+        {formatDate(pubDate)}
+        {updatedDate && ` (updated ${formatDate(updatedDate)})`}
+      </p>
+      {
+        tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => (
+              <Tag label={tag} />
+            ))}
+          </div>
+        )
+      }
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+  }
+
+  .tags {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-5);
+  }
+
+  .prose {
+    margin-top: var(--space-5);
+  }
+
+  .prose :global(h2) {
+    margin-top: var(--space-6);
+  }
+
+  .prose :global(h3) {
+    margin-top: var(--space-5);
+  }
+
+  .prose :global(pre) {
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    overflow-x: auto;
+  }
+
+  .prose :global(code) {
+    font-size: 0.9em;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-accent-soft);
+    margin-left: 0;
+    padding-left: var(--space-4);
+    color: var(--color-text-muted);
+  }
+</style>

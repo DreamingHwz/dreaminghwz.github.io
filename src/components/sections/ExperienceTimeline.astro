@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from '../ui/SectionHeading.astro';
+import EmptyState from '../ui/EmptyState.astro';
+import ExperienceItem from './ExperienceItem.astro';
+
+const all = await getCollection('experience');
+const byDateDesc = (a: (typeof all)[number], b: (typeof all)[number]) =>
+  b.data.startDate.getTime() - a.data.startDate.getTime();
+
+const education = all.filter((e) => e.data.type === 'education').sort(byDateDesc);
+const work = all.filter((e) => e.data.type === 'work').sort(byDateDesc);
+---
+
+<section aria-labelledby="experience-heading">
+  <SectionHeading title="Experience" id="experience-heading" />
+  {
+    all.length === 0 ? (
+      <EmptyState message="No experience entries yet." />
+    ) : (
+      <div class="groups">
+        {education.length > 0 && (
+          <div class="group">
+            <h3 class="group-label">Education</h3>
+            {education.map((entry) => (
+              <ExperienceItem entry={entry.data} />
+            ))}
+          </div>
+        )}
+        {work.length > 0 && (
+          <div class="group">
+            <h3 class="group-label">Work</h3>
+            {work.map((entry) => (
+              <ExperienceItem entry={entry.data} />
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .group-label {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+</style>

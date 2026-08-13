@@ -1,0 +1,26 @@
+{
+  "name": "dreaminghwz.github.io",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.2.1",
+    "@astrojs/sitemap": "^3.7.3",
+    "d3-delaunay": "^6.0.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3",
+    "@types/d3-delaunay": "^6.0.4"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

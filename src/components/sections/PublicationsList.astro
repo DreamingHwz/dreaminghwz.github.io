@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from '../ui/SectionHeading.astro';
+import EmptyState from '../ui/EmptyState.astro';
+import PublicationItem from './PublicationItem.astro';
+
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+---
+
+<section aria-labelledby="publications-heading">
+  <SectionHeading title="Publications" id="publications-heading" />
+  {
+    publications.length === 0 ? (
+      <EmptyState message="No publications yet — check back soon." />
+    ) : (
+      <div class="list">
+        {publications.map((entry) => (
+          <PublicationItem publication={entry.data} />
+        ))}
+      </div>
+    )
+  }
+</section>
