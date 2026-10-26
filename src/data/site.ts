@@ -8,7 +8,7 @@ export const site = {
   email: 'whou25@wisc.edu',
   socials: [
     { label: 'GitHub', url: 'https://github.com/DreamingHwz', icon: 'github' as const },
-    { label: 'Google Scholar', url: 'https://scholar.google.com', icon: 'scholar' as const },
+    { label: 'Google Scholar', url: 'https://scholar.google.com/citations?user=rCOFzYsAAAAJ&hl=en', icon: 'scholar' as const },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/wanzhu-hou-80a012367/', icon: 'linkedin' as const },
   ],
   cvUrl: '/cv.pdf',
